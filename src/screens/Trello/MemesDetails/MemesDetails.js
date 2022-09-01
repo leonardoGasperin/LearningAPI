@@ -4,7 +4,7 @@ import { memesStyle } from '../../../styles/memesStyles';
 
 const API = "https://26ab-177-73-98-225.ngrok.io"
 
-export function MemesDetails({route}) {
+export function MemesDetails({navigation, route}) {
     const {id} = route.params;
     const [getMeme, setMeme] = useState(0);
 
@@ -15,15 +15,20 @@ export function MemesDetails({route}) {
             setMeme(data);
           })
           .catch((error) => {
-            //alert("Houve um erro ao tentar obeter o conteúdo.");
+            alert("Houve um erro ao tentar obeter o conteúdo.");
             console.log(error);
           })
     }
+
+    function back() {
+        navigation.navigate("MemesList")
+    }
+
     getEle();
   return (
     <SafeAreaView style={memesStyle.container}>
-        <TouchableOpacity style={{alignSelf: "flex-start",}}>
-            <Text style={{fontWeight: "900", paddingHorizontal: 15, fontSize: 28}}>{"<--"}</Text>
+        <TouchableOpacity style={{alignSelf: "flex-start"}} onPress={back}>
+            <Text style={{fontWeight: "900", paddingHorizontal: 15, fontSize: 28, marginTop: "5%"}}>{"<--"}</Text>
         </TouchableOpacity>
         <View style={{...memesStyle.card, ...memesStyle.detailsCard}}>
             <Text style={{...memesStyle.detailTx, ...memesStyle.likes}}>{getMeme.likes} curtidas!</Text>

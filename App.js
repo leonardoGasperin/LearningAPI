@@ -29,7 +29,7 @@ export default function App() {
         <Stack.Screen name='AddTask' component={AddTask}/>
 
         <Stack.Screen name='MemesList' component={MemesList}/>
-        <Drawer.Screen name='MemesDetails' component={MemesDetails}/>
+        <Drawer.Screen name='MemesDetails' component={MemesDetails} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
