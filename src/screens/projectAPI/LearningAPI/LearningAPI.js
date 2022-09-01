@@ -1,14 +1,18 @@
+import { useIsFocused } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import { View, Text, TextInput, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, ScrollView, TouchableOpacity, SafeAreaView, Switch } from 'react-native';
 import { commonStyle } from '../../../styles/commonStyle';
 
-const API = "https://4fe6-177-73-98-225.ngrok.io"
+const API = "https://e68c-177-73-98-225.ngrok.io"
 
 export function LearningAPI({navigation}) {
     const [learning, setAPI] = useState([]);
+    const [srch, setSearch] = useState("");
+    const isFocused = useIsFocused();
 
-  function getTasts() {
-    fetch(API+"/tasks")
+  function getTasks() {
+    console.log(srch)
+    fetch(API+"/tasks" + "?name_like=" + srch)
         .then(async (response) => {
             const data = await response.json();
             setAPI(data);
@@ -29,12 +33,33 @@ export function LearningAPI({navigation}) {
     })
     .then(() => {
       alert(`Tarefa: "${data.name}" Deletado com sucesso!`)
-      getTasts();
+      getTasks();
     })
     .catch(() => alert("Não foi deletado com sucesso"))
   }
 
-  useEffect(() => getTasts(), [])
+  function attTask(ele) {
+    fetch(API + "/tasks/" + ele.id,{
+      method: "PATCH",
+      body: JSON.stringify({
+        status: !ele.status
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+    .then(() => {
+      alert(ele.name + " Atualizado");
+      getTasks();
+    })
+    .catch(() => alert("0011 1011 1101 1111 0010"))
+  }
+
+  useEffect(() => {
+    if(isFocused)
+      getTasks()
+  }, 
+  [isFocused, srch])
 
   return (
     <SafeAreaView style={commonStyle.container}>
@@ -44,6 +69,8 @@ export function LearningAPI({navigation}) {
           keyboardType="web-search"
           selectionColor="#0f0" 
           placeholderTextColor="#0ff"
+          value={srch}
+          onChangeText={setSearch}
         />
         <View style={commonStyle.rowContainer}>
           <View style={commonStyle.divisorSimple}></View>
@@ -55,10 +82,13 @@ export function LearningAPI({navigation}) {
         <ScrollView>
           {learning.map((ele) => (
             <View style={commonStyle.card} key={ele.id}>
-              <Text>{ele.name}</Text>
-              <TouchableOpacity style={commonStyle.btn} onPress={() => delTask(ele)}>
-                <Text>DEL</Text>
-              </TouchableOpacity>
+              <Text numberOfLines={1} ellipsizeMode="tail" style={{maxWidth: "75%"}}>{ele.name}</Text>
+              <View style={{flexDirection: "row"}}>
+              <Switch onValueChange={() => attTask(ele)} thumbColor={ele.status ? "#f5dd4b" : "#f4f3f4"} trackColor={{ false: "#767577", true: "#81b0ff" }} value={ele.status}/>
+                <TouchableOpacity style={commonStyle.btn} onPress={() => delTask(ele)}>
+                  <Text>DEL</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           ))}
         </ScrollView>
