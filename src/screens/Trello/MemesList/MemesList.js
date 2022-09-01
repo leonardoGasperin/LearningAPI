@@ -1,9 +1,9 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { memesStyle } from '../../../styles/memesStyles';
 
-const API = "https://97d2-177-73-98-225.ngrok.io"
+const API = "https://3b1d-177-73-98-225.ngrok.io"
 
 export function MemesList() {    
     const [learning, setAPI] = useState([]);
@@ -14,7 +14,7 @@ export function MemesList() {
         .then(async (response) => {
             const data = await response.json();
             setAPI(data);
-            console.log(data);
+            // console.log(data);
         })
         .catch((error) => {
             alert("Houve um erro ao tentar listar conteúdo.");
@@ -22,20 +22,25 @@ export function MemesList() {
         })
     }
     useEffect(() => {
-        if(isFocused){
-         console.log("isFOCUZEDI")
+        if(isFocused)
             getMemes();
-        }else{
-            console.log("NOTfocuzedi")}
       }, 
       [isFocused])
-  return (
-    <View style={memesStyle.container}>
-        {/* {learning.map((ele) => (
-            <View key={ele.id}>
-                <Text>{ele.url}</Text>
-            </View>
-        ))} */}
+  return (//04042E 466300 FF4900 00001A
+    <View style={{...memesStyle.container, ...{backgroundColor: "#04042E"}}}>
+        <Text style={{color: "#466300", fontWeight: "600"}}>Meus Memes</Text>
+        <View style={memesStyle.divisor}/>
+        <ScrollView>
+        <View style={{ 
+        flexDirection: "row",
+        flexWrap: "wrap"}}>
+        {learning.map((ele) => (
+            <TouchableOpacity key={ele.id} style={memesStyle.card}>
+                    <Image source={{uri: ele.url}} style={memesStyle.img}/>
+            </TouchableOpacity>
+        ))}
+        </View>
+        </ScrollView>
     </View>
   );
 }

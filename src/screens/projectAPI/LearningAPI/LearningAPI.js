@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, SafeAreaView, Switch } from 'react-native';
 import { commonStyle } from '../../../styles/commonStyle';
 
-const API = "https://97d2-177-73-98-225.ngrok.io"
+const API = "https://3b1d-177-73-98-225.ngrok.io"
 
 export function LearningAPI({navigation}) {
     const [learning, setAPI] = useState([]);
