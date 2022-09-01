@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { commonStyle } from '../../../styles/commonStyle';
-const API = "https://e68c-177-73-98-225.ngrok.io"
+const API = "https://97d2-177-73-98-225.ngrok.io"
 
 export function AddTask({navigation}) {
     const [learning, setAPI] = useState("")
