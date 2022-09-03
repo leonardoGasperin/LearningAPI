@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { memesStyle } from '../../../styles/memesStyles';
 
-const API = "https://08b0-177-73-98-225.ngrok.io";
+const API = "https://e4c7-177-73-98-225.ngrok.io";
 
 export function MemesList({navigation}) {    
     const [learning, setAPI] = useState([]);
