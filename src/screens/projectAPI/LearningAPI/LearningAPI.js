@@ -1,9 +1,11 @@
 import { useIsFocused } from '@react-navigation/native';
+import { format, parseISO } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, SafeAreaView, Switch } from 'react-native';
+import { Icon } from 'react-native-elements'
 import { commonStyle } from '../../../styles/commonStyle';
 
-const API = "https://3b1d-177-73-98-225.ngrok.io"
+const API = "https://08b0-177-73-98-225.ngrok.io";
 
 export function LearningAPI({navigation}) {
     const [learning, setAPI] = useState([]);
@@ -74,20 +76,23 @@ export function LearningAPI({navigation}) {
         />
         <View style={commonStyle.rowContainer}>
           <View style={commonStyle.divisorSimple}></View>
-          <TouchableOpacity style={commonStyle.addBtn} onPress={add}>
-          <Text style={{padding: 3, paddingLeft:4}}>ADD</Text>
-          </TouchableOpacity>
+          <View style={commonStyle.addBtn}>
+            <Icon name="add"  onPress={add}/>
+          </View>
         </View>
         
         <ScrollView>
           {learning.map((ele) => (
             <View style={commonStyle.card} key={ele.id}>
-              <Text numberOfLines={1} ellipsizeMode="tail" style={{maxWidth: "75%"}}>{ele.name}</Text>
+            <View style={{flexDirection: "column"}}>
+                <Text numberOfLines={1} ellipsizeMode="tail">{ele.name}</Text>
+                <Text numberOfLines={1} ellipsizeMode="tail">{ele.category+" "}{format(parseISO(ele.date), "dd 'de' MMMM 'de' yyyy")}</Text>
+              </View>
               <View style={{flexDirection: "row"}}>
-              <Switch onValueChange={() => attTask(ele)} thumbColor={ele.status ? "#f5dd4b" : "#f4f3f4"} trackColor={{ false: "#767577", true: "#81b0ff" }} value={ele.status}/>
-                <TouchableOpacity style={commonStyle.btn} onPress={() => delTask(ele)}>
-                  <Text>DEL</Text>
-                </TouchableOpacity>
+                <Switch onValueChange={() => attTask(ele)} thumbColor={ele.status ? "#f5dd4b" : "#f4f3f4"} trackColor={{ false: "#767577", true: "#81b0ff" }} value={ele.status}/>
+                <View style={commonStyle.btnIcon} >
+                  <Icon name="trash" type="evilicon" color="#d0f" onPress={() => delTask(ele)}/>
+                </View>
               </View>
             </View>
           ))}

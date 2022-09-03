@@ -24,15 +24,39 @@ export const commonStyle = StyleSheet.create({
       borderColor: "#d0f",
       marginVertical: "7%",
     },
-    addBtn:{backgroundColor: "#d0f", borderRadius: 50, borderColor: "#d0f", marginLeft: 5},
-    btn:{
-      backgroundColor: "#d0f",
-      borderRadius: 50,
-      borderColor: "#0ff",
-      marginLeft: 5,
-      padding: 10,
+    addBtn:{
+      backgroundColor: "#d0f", 
+      borderRadius: 50, 
+      padding: 5, 
+      marginLeft: 7
     },
-    rowContainer:{width: "100%", flexDirection: "row", alignItems: "center"},
-    card:{alignContent: "center", justifyContent: "space-between", flexDirection: "row", padding: 15, borderWidth: 1, borderRadius: 5, backgroundColor: "#3fa", marginVertical: 7,},
-
+    btnIcon:{
+      marginLeft: 0,
+      padding: 15,
+    },
+    btn:{
+      padding: 15,
+      borderRadius: 50,
+      backgroundColor: "#d0f",
+    },
+    rowContainer:{
+      width: "100%", 
+      flexDirection: "row", 
+      alignItems: "center", 
+      marginBottom: "10%"
+    },
+    card:{
+      width: "90%", 
+      maxHeight: 80, 
+      alignContent: "center", 
+      alignSelf: "center",
+      justifyContent: "space-between", 
+      flexDirection: "row", 
+      padding: 7, 
+      borderWidth: 1, 
+      borderRadius: 5, 
+      backgroundColor: "#3fa", 
+      marginVertical: 7,
+      marginRight: "7%"
+    },
   });

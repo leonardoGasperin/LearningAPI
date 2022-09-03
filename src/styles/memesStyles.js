@@ -17,7 +17,8 @@ export const memesStyle = StyleSheet.create({
       borderWidth: 1.5,
       borderRadius: 50,
       borderColor: "#00001A",
-      marginVertical: "7%",
+      marginTop: "7%",
+      marginBottom: 3,
       },
       card:{
         width: screenW * 0.3,
@@ -29,7 +30,7 @@ export const memesStyle = StyleSheet.create({
       },
       img: {
         width: "90%",
-        height: "99%",
+        height: "95%",
         alignSelf: "center",
       },
       detailsCard:{
@@ -40,12 +41,12 @@ export const memesStyle = StyleSheet.create({
       detailTx:{
         textAlign: "center",
         marginTop: "5%",
-        color: "#bbb",
+        color: "#FF4900",
       },
       likes:{
         fontSize: 18,
         fontWeight: "bold",
-        color: "#000",
+        color: "#466300",
         marginBottom: "15%"
       },
       textDiv:{
@@ -55,6 +56,5 @@ export const memesStyle = StyleSheet.create({
         width: "90%",
         height: "60%",
         alignSelf: "center",
-        // flexShrink: 1
       },
 })

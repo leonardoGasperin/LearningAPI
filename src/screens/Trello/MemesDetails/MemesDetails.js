@@ -1,8 +1,10 @@
+import { format, parseISO } from 'date-fns';
 import { useState } from 'react';
-import { Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, SafeAreaView, Text, View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { memesStyle } from '../../../styles/memesStyles';
 
-const API = "https://26ab-177-73-98-225.ngrok.io"
+const API = "https://08b0-177-73-98-225.ngrok.io";
 
 export function MemesDetails({navigation, route}) {
     const {id} = route.params;
@@ -27,15 +29,15 @@ export function MemesDetails({navigation, route}) {
     getEle();
   return (
     <SafeAreaView style={memesStyle.container}>
-        <TouchableOpacity style={{alignSelf: "flex-start"}} onPress={back}>
-            <Text style={{fontWeight: "900", paddingHorizontal: 15, fontSize: 28, marginTop: "5%"}}>{"<--"}</Text>
-        </TouchableOpacity>
+        <View style={{alignSelf: "flex-start", marginTop: "5%", marginHorizontal: "3%"}}>
+            <Icon name="west" onPress={back}/>
+        </View>
         <View style={{...memesStyle.card, ...memesStyle.detailsCard}}>
             <Text style={{...memesStyle.detailTx, ...memesStyle.likes}}>{getMeme.likes} curtidas!</Text>
-            <Image source={{uri: getMeme.url}} style={memesStyle.DetailsImg}/>
+            <Image source={{uri: getMeme.url}} style={memesStyle.DetailsImg} resizeMode="stretch"/>
             <View style={memesStyle.textDiv}>
                 <Text style={memesStyle.detailTx}>Autor: {getMeme.author}</Text>
-                <Text style={memesStyle.detailTx}>Data: {new Date(getMeme.date).toDateString()}</Text>
+                <Text style={memesStyle.detailTx}>Data: {getMeme.date}</Text>
                 <Text style={memesStyle.detailTx}>{getMeme.share} compartilhamentos!</Text>
             </View>
         </View>
