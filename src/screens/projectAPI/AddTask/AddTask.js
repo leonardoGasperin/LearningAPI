@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { Icon } from 'react-native-elements';
+import { API } from '../../../api/refs';
 import { commonStyle } from '../../../styles/commonStyle';
 
-const API = "https://e4c7-177-73-98-225.ngrok.io";
-
+//const API = "https://80d3-177-73-98-225.ngrok.io";
 export function AddTask({navigation}) {
     const [learning, setAPI] = useState("");
     const [item, setItem] = useState("");
@@ -17,7 +17,7 @@ export function AddTask({navigation}) {
     });
 
     function add() {
-        if(learning.length <= 16){
+        if(learning.length <= 6){
             alert("Digite no minimo 16 caracteres");
         }else if(item === ""){
             alert("Selecione uma opção");
@@ -33,7 +33,7 @@ export function AddTask({navigation}) {
                 const data = await response.json();
                 console.log("separador");
                 console.log(data)
-                navigation.navigate("API");
+                navigation.navigate("LearningAPI");
             })
             .catch(() => alert("!!!RORRE !!!RORRE !!!RORRE !!!RORRE !!!RORRE"));
         }

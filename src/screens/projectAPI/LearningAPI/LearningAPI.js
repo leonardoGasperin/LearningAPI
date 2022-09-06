@@ -3,9 +3,9 @@ import { format, parseISO } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, SafeAreaView, Switch } from 'react-native';
 import { Icon } from 'react-native-elements'
+import { API } from '../../../api/refs';
 import { commonStyle } from '../../../styles/commonStyle';
-
-const API = "https://e4c7-177-73-98-225.ngrok.io";
+//const API = "https://80d3-177-73-98-225.ngrok.io";
 
 export function LearningAPI({navigation}) {
     const [learning, setAPI] = useState([]);
@@ -14,7 +14,7 @@ export function LearningAPI({navigation}) {
 
   function getTasks() {
     console.log(srch)
-    fetch(API+"/tasks" + "?name_like=" + srch)
+    fetch(API+"/tasks" + "?task_like=" + srch)
         .then(async (response) => {
             const data = await response.json();
             setAPI(data);
@@ -34,7 +34,7 @@ export function LearningAPI({navigation}) {
       method: "DELETE"
     })
     .then(() => {
-      alert(`Tarefa: "${data.name}" Deletado com sucesso!`)
+      alert(`Tarefa: "${data.task}" Deletado com sucesso!`)
       getTasks();
     })
     .catch(() => alert("Não foi deletado com sucesso"))
@@ -85,7 +85,7 @@ export function LearningAPI({navigation}) {
           {learning.map((ele) => (
             <View style={commonStyle.card} key={ele.id}>
             <View style={{flexDirection: "column"}}>
-                <Text numberOfLines={1} ellipsizeMode="tail">{ele.name}</Text>
+                <Text numberOfLines={1} ellipsizeMode="tail">{ele.task}</Text>
                 <Text numberOfLines={1} ellipsizeMode="tail">{ele.category+" "}{format(parseISO(ele.date), "dd 'de' MMMM 'de' yyyy")}</Text>
               </View>
               <View style={{flexDirection: "row"}}>

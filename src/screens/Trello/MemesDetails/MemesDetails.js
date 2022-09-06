@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements';
 import { memesStyle } from '../../../styles/memesStyles';
 
 import ptBR from 'date-fns/locale/pt-BR';
-const API = "https://e4c7-177-73-98-225.ngrok.io";
+const API = "https://80d3-177-73-98-225.ngrok.io";
 
 export function MemesDetails({navigation, route}) {
     const {id} = route.params;

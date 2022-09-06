@@ -2,17 +2,10 @@
   "tasks": [
     {
       "status": false,
-      "name": "Leonardo",
-      "date": "1992-06-26",
+      "task": "Leonardo",
+      "date": "2022-07-04",
       "category": "C++",
       "id": 1
-    },
-    {
-      "status": false,
-      "task": "Hrhdhjdjjsnsjjrjjdjjskwjjjdjxjjs",
-      "date": "2022-09-09",
-      "category": "C",
-      "id": 2
     }
   ],
   "memes": [

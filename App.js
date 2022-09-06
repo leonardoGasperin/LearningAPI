@@ -7,16 +7,18 @@ import { LearningAPI } from './src/screens/projectAPI/LearningAPI/LearningAPI';
 import { AddTask } from './src/screens/projectAPI/AddTask/AddTask';
 import { MemesList } from './src/screens/Trello/MemesList/MemesList';
 import { MemesDetails } from './src/screens/Trello/MemesDetails/MemesDetails';
+import { BostaRio } from './src/screens/BostaRio/BostaRio';
 
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-function TabAPI() {
+function DrawerAPI() {
   return(
     <Drawer.Navigator>
       <Drawer.Screen name='LearningAPI' component={LearningAPI}/>
       <Drawer.Screen name='MemesList' component={MemesList}/>
+      <Drawer.Screen name='BostaRio' component={BostaRio}/>
     </Drawer.Navigator>
   );
 }
@@ -24,12 +26,10 @@ function TabAPI() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='MemesList'>
-        <Stack.Screen name='API' component={LearningAPI}/>
+      <Stack.Navigator initialRouteName='DrawerAPI'>    
+        <Stack.Screen name="DrawerAPI" component={DrawerAPI} options={{headerShown: false}}/>
         <Stack.Screen name='AddTask' component={AddTask}/>
-
-        <Stack.Screen name='MemesList' component={MemesList}/>
-        <Drawer.Screen name='MemesDetails' component={MemesDetails} options={{headerShown: false}}/>
+        <Stack.Screen name='MemesDetails' component={MemesDetails} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
