@@ -89,5 +89,21 @@
       "date": 1661770427,
       "share": 4328
     }
+  ],
+  "gifts": [
+    {
+      "id": 34545,
+      "code": "DAA1yZRW",
+      "local": "do seu Zé",
+      "value": 16.32,
+      "owner": ""
+    },
+    {
+      "id": 66666,
+      "code": "DAA1yZzW",
+      "local": "da dona Aldineia",
+      "value": 16.32,
+      "owner": null
+    }
   ]
 }
